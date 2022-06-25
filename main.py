@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
-# from googlesearch import search
+
+from googlesearch import search
 from googleapi import google
 import urllib.request as urllib
 import re
 from bs4 import BeautifulSoup
+#import time
 
-def checkPlagiat(sentence, html):
+#def checkPlagiat(sentence, html):
     
 
 
@@ -26,21 +27,26 @@ print(content.replace("\n", "").split(".")[0:-1])
 
 ##########################
 # Start google search ->  Make a search query for each sentence and save it to a variable
-# for j in search("Moderne Programmierkonzepe", tld="de", num=1, stop=10, pause=2):
-searchResults = google.search("Modern Programmierkonzepte")
-for j in searchResults:
+for j in search("Moderne Programmierkonzepe", tld="de", num=4, stop=10, pause=2):
+#searchResults = google.search("Modern Programmierkonzepte")
+#for j in searchResults:
     print(j)
 
 ##########################
 # Open Link and read html
-    site = urllib.urlopen(j)
-    sitebytes = site.read()
-    html = sitebytes.decode("utf8")
-    site.close()
-    clean_html = re.sub("<.*?>", " ", html)
-    clean_html = re.sub(r"\s+", " ", clean_html)
-    print(clean_html)
-    checkPlagiat()
+    try:
+        site = urllib.urlopen(j)     
+        sitebytes = site.read()
+        html = sitebytes.decode("utf8")
+        site.close()
+        clean_html = re.sub("<.*?>", " ", html)
+        clean_html = re.sub(r"\s+", " ", clean_html)
+        print(clean_html)
+        checkPlagiat()
+        
+        
+    except BaseException as err:
+        continue
 
 
 ##########################
