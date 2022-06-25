@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from google import search
+from googlesearch import search
 import urllib.request as urllib
 import re
 from bs4 import BeautifulSoup
@@ -21,7 +21,7 @@ print(content.replace("\n", "").split(".")[0:-1])
 
 ##########################
 # Start google search
-for j in search("Moderne Programmierkonzepe", tld="com", num=10, stop=10, pause=2):
+for j in search("Moderne Programmierkonzepe", tld="de", num=1, stop=10, pause=2):
     print(j)
 
 ##########################
