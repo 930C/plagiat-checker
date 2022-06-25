@@ -6,9 +6,26 @@ import re
 from bs4 import BeautifulSoup
 #import time
 
+<<<<<<< HEAD
 #def checkPlagiat(sentence, html):
-    
+=======
+plagiatCounter = 0
 
+def checkPlagiat(sentence, html):
+    global plagiatCounter
+
+    sentenceUp = sentence.upper()
+    htmlUp = html.upper()
+>>>>>>> cf9574f4bb4274d925d6b856acc9bba82dcf9fb6
+    
+    find = htmlUp.find(sentenceUp)
+    if find > -1:
+
+        plagiatCounter = plagiatCounter + 1
+        return "Plagiat " + sentence + " an Stelle " + str(find)
+        # return true # TODO in regex verfeinerte Suche nach Plagiat (z.B. Kommatrennung)
+    else:
+        return ""
 
 #############
 # Open File -> Save all Sentences in a list
@@ -53,3 +70,5 @@ for j in search("Moderne Programmierkonzepe", tld="de", num=4, stop=10, pause=2)
 # Go through each sentence, 
 # check wether the sentence is present in each of it's search queries html code
 # return a dictionary { String sentence; double plagiatPercentage}
+
+print(checkPlagiat("ich heiSSe Luca", "Ich komme aus Mannheim und ich HEISSe LUCA"))
