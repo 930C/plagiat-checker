@@ -1,13 +1,9 @@
-def checkPlagiat(sentence, html):
+def checkPlagiat(sentence, html, url):
 
     sentenceUp = sentence.upper()
     htmlUp = html.upper()
-
-    print("SATZ " + sentence)
     
     find = htmlUp.find(sentenceUp)
     if find > -1:
-        return "Plagiat " + sentence + " an Stelle " + str(find)
+        return "Plagiat " + sentence + " an Stelle " + str(find) + " von " + url
         # return true # TODO in regex verfeinerte Suche nach Plagiat (z.B. Kommatrennung)
-    else:
-        return "Der Satz " + sentence + "ist kein Plagiat."
