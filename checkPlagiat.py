@@ -3,7 +3,7 @@ def checkPlagiat(sentence, html):
     sentenceUp = sentence.upper()
     htmlUp = html.upper()
 
-    print("SATZ " + sentence + "\n------------------\nHTML: " + html)
+    print("SATZ " + sentence)
     
     find = htmlUp.find(sentenceUp)
     if find > -1:
