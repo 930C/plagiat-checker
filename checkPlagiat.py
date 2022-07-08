@@ -8,7 +8,7 @@ def checkPlagiat(sentence, html, url):
     
     find = re.findall(sentenceRegex, htmlUp)
     if list.__sizeof__(find) > 0:
-        return "PLAGIAT GEFUNDEN: ----------------\n" + sentence + "\n-----\nVon:\t" + url
+        return "----------------\nPLAGIAT GEFUNDEN:\n " + sentence + "\n\nVon:\n" + url + "\n----------"
         # return true # TODO in regex verfeinerte Suche nach Plagiat (z.B. Kommatrennung)
     else:
         return None
