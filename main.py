@@ -9,24 +9,32 @@ import checkPlagiat as cp
 import wikipedia
 
 def main(content):
+    plagiate = []
 
     for i in content:
         try:
-
+            raise BaseException()
             for j in search('"' + i + '"', tld="de", num=4, stop=10, pause=2):
                 clean_html = rw.readWebsite(j)
-                print(cp.checkPlagiat(i, clean_html, j))
+                plagiate.append(cp.checkPlagiat(i, clean_html, j))
 
         except BaseException as err:
-
+            print(err)
             try:
                 wikipedia.set_lang("de")
                 wikis = wikipedia.search(i[0:300])
-                for j in wikis:
+                for j in wikis[0:5]:
                     test = wikipedia.page(j)
                     clean_html = rw.readWebsite(test.url)
-                    print(cp.checkPlagiat(i, clean_html, j))
+
+                    checkResult = cp.checkPlagiat(i, clean_html, j)
+                    if checkResult != None:
+                        checkResult[1] += "(Quelle: Wikipedia)"
+                        plagiate.append(checkResult)
+                        break
 
             except BaseException as err:
                 print(err)
                 continue
+
+    return plagiate
