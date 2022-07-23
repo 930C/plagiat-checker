@@ -1,5 +1,6 @@
 import urllib.request as urllib
 import re
+
 def readWebsite(url):
     site = urllib.urlopen(url)     
     sitebytes = site.read()

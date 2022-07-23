@@ -14,22 +14,17 @@ def getTextInput():
 
 def showPlagiate(plagiate):
     results = tk.Tk()
-    i = 0
     for p in plagiate:
-#        label1 = tk.Label(results, text=p[0], width=150).grid(row=i,column=0)
- #       label2 = tk.Label(results, text=p[1], width=20).grid(row=i,column=1)
         label1 = tk.Text(results, width=150, height=5)
-        label1.grid(row=i, column=0)
+        label1.grid(row=plagiate.index(p), column=0)
         label1.insert("1.0", p[0])
         label1.config(state="disabled")
 
         label2 = tk.Text(results, width=50, height=5)
-        label2.grid(row=i, column=1)
+        label2.grid(row=plagiate.index(p), column=1)
         label2.insert("1.0", p[1])
         label2.config(state="disabled")
 
-
-        i += 1
     
 textExample=tk.Text(root, height=30, width=100)
 textExample.insert('1.0', 'Klein trieb im Vorstand eine engere Verzahnung aller Unternehmensbereiche und eine leistungsfähige IT-Organisation voran. Anfang 2019 übernahm er vom bisherigen Vorstandsmitglied Bernd Leukert den Bereich der globalen SAP-Entwicklung und Auslieferung der Kernanwendungen, besonders S/4HANA, unter dem Titel „The Intelligent Enterprise“.[6]')

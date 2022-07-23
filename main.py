@@ -13,13 +13,12 @@ def main(content):
 
     for i in content:
         try:
-            raise BaseException()
+            # raise BaseException()
             for j in search('"' + i + '"', tld="de", num=4, stop=10, pause=2):
                 clean_html = rw.readWebsite(j)
                 plagiate.append(cp.checkPlagiat(i, clean_html, j))
 
         except BaseException as err:
-            print(err)
             try:
                 wikipedia.set_lang("de")
                 wikis = wikipedia.search(i[0:300])
