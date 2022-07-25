@@ -1,7 +1,3 @@
 # plagiat-checker
 
-pip install google
-
-pip install wikipedia
-
-pip install pyside6
+pip install google wikipedia pyside6
