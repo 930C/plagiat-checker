@@ -7,8 +7,8 @@ root.configure(bg='#0D1821')
 root.geometry('1200x600')
 
 def getTextInput():
-    result=textExample.get("1.0","end")
-    content = result.replace("\n", "").split(".")[0:-1]
+    content=textExample.get("1.0","end")
+    # content = result.replace("\n", "").split(".")[0:-1]
     plagiate = main.main(content)
     showPlagiate(plagiate)
 

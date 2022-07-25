@@ -75,7 +75,6 @@ class Ui_frm_main(object):
         self.menuDatei.addAction(self.actionBeenden)
 
         self.retranslateUi(frm_main)
-        self.bt_check.clicked.connect(self.bt_check.click)
 
         QMetaObject.connectSlotsByName(frm_main)
     # setupUi

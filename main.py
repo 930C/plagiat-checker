@@ -5,11 +5,14 @@ from bs4 import BeautifulSoup
 import readFile as rf
 import readWebsite as rw
 import checkPlagiat as cp
+import sentenceSplitter as ss
 
 import wikipedia
 
-def main(content):
+def main(eingabe):
     plagiate = []
+
+    content = ss.splitter(eingabe)
 
     for i in content:
         try:
