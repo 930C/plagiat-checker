@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 from PySide6.QtWidgets import (QTableWidget, QTableWidgetItem)
-from Qt.frm_main import Ui_frm_main
+from Qt.ui_frm_main import Ui_frm_main
 import main as m
 
 class Frm_main(QMainWindow, Ui_frm_main):
