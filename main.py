@@ -9,27 +9,33 @@ import sentenceSplitter as ss
 
 import wikipedia
 
-def main(eingabe):
+def main(eingabe, ui=None):
     plagiate = []
 
     content = ss.splitter(eingabe)
 
-    for i in content:
+    for index, value in enumerate(content):
+        
         try:
             # raise BaseException()
-            for j in search('"' + i + '"', tld="de", num=4, stop=10, pause=2):
+            for j in search('"' + value + '"', tld="de", num=4, stop=10, pause=2):
                 clean_html = rw.readWebsite(j)
-                plagiate.append(cp.checkPlagiat(i, clean_html, j))
+                checkResult = cp.checkPlagiat(value, clean_html, j)
+
+                if checkResult != None:
+                        plagiate.append(checkResult)
+                        break
 
         except BaseException as err:
             try:
                 wikipedia.set_lang("de")
-                wikis = wikipedia.search(i[0:300])
+                wikis = wikipedia.search(value[0:300])
                 for j in wikis[0:5]:
                     test = wikipedia.page(j)
                     clean_html = rw.readWebsite(test.url)
 
-                    checkResult = cp.checkPlagiat(i, clean_html, j)
+                    checkResult = cp.checkPlagiat(value, clean_html, j)
+
                     if checkResult != None:
                         checkResult[1] += "(Quelle: Wikipedia)"
                         plagiate.append(checkResult)
@@ -38,5 +44,36 @@ def main(eingabe):
             except BaseException as err:
                 print(err)
                 continue
+        finally:
+            ui.progress(int((index+1)*100/len(content)))
 
     return plagiate
+
+
+
+def checker(sentence):
+    print(sentence)
+    try:
+        for j in search('"' + sentence + '"', tld="de", num=4, stop=10, pause=2):
+            clean_html = rw.readWebsite(j)
+            checkResult = cp.checkPlagiat(sentence, clean_html, j)
+
+            if checkResult != None:
+                return checkResult
+
+    except BaseException as err:
+        try:
+            wikipedia.set_lang("de")
+            wikis = wikipedia.search(sentence[0:300])
+            for j in wikis[0:5]:
+                test = wikipedia.page(j)
+                clean_html = rw.readWebsite(test.url)
+
+                checkResult = cp.checkPlagiat(sentence, clean_html, j)
+
+                if checkResult != None:
+                    checkResult[1] += "(Quelle: Wikipedia)"
+                    return checkResult
+
+        except BaseException as err:
+            print(err)

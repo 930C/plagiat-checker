@@ -16,61 +16,31 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Plagiat Checker v1</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="lb_plagiatChecker">
-      <property name="baseSize">
-       <size>
-        <width>2</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Noto Sans Display Bold</family>
-        <pointsize>24</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Plagiat Checker</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPlainTextEdit" name="te_input">
-      <property name="baseSize">
-       <size>
-        <width>2</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="plainText">
-       <string>Hier Text eingeben...</string>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="0">
-     <widget class="QLabel" name="lb_ergebnisse">
-      <property name="baseSize">
-       <size>
-        <width>2</width>
-        <height>0</height>
-       </size>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
       </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="format">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="lb_ergebnisse">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
@@ -84,34 +54,30 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QProgressBar" name="progressBar">
-      <property name="baseSize">
-       <size>
-        <width>2</width>
-        <height>0</height>
-       </size>
+    <item row="0" column="0" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="lb_plagiatChecker">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
-      <property name="value">
-       <number>24</number>
+      <property name="font">
+       <font>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Plagiat Checker</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="2" column="0" alignment="Qt::AlignHCenter">
+    <item row="4" column="0" alignment="Qt::AlignHCenter">
      <widget class="QPushButton" name="bt_check">
-      <property name="baseSize">
-       <size>
-        <width>1</width>
-        <height>1</height>
-       </size>
-      </property>
       <property name="font">
        <font>
         <family>Noto Sans Display Bold</family>
         <pointsize>24</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
        </font>
       </property>
       <property name="cursor">
@@ -129,18 +95,37 @@ text-align: center;</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
+    <item row="7" column="0">
      <widget class="QTableWidget" name="tv_ergebnisse">
-      <property name="baseSize">
-       <size>
-        <width>2</width>
-        <height>0</height>
-       </size>
-      </property>
       <property name="font">
        <font>
         <pointsize>14</pointsize>
        </font>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <column>
+       <property name="text">
+        <string>Satz</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Quelle</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPlainTextEdit" name="te_input">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="plainText">
+       <string>Ein Prozessor ist ein (meist sehr stark verkleinertes und meist frei) programmierbares Rechenwerk, also eine Maschine oder eine elektronische Schaltung, die gemäß übergebenen Befehlen andere Maschinen oder elektrische Schaltungen steuert und dabei einen Algorithmus (Prozess) vorantreibt, was meist Datenverarbeitung beinhaltet. Der weitere Artikel beschreibt ausschließlich diese Bedeutung, am Beispiel des Prozessors eines Computers. Am bekanntesten sind Prozessoren als Hauptprozessor, Zentrale Recheneinheit, Zentraleinheit oder Zentrale Verarbeitungseinheit (kurz ZVE, englisch central processing unit, kurz CPU) für Computer oder computerähnliche Geräte, in denen sie Befehle ausführen. Am weitesten verbreitet sind Prozessoren heutzutage als integrierte Schaltungen in Form von Mikroprozessoren und Mikrocontroller in eingebetteten Systemen (etwa in Waschmaschinen, Ticketautomaten, DVD-Spielern, Smartphones usw.). </string>
       </property>
      </widget>
     </item>
@@ -181,16 +166,16 @@ text-align: center;</string>
   <connection>
    <sender>bt_check</sender>
    <signal>clicked()</signal>
-   <receiver>bt_check</receiver>
-   <slot>click()</slot>
+   <receiver>progressBar</receiver>
+   <slot>reset()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>590</x>
-     <y>414</y>
+     <x>522</x>
+     <y>345</y>
     </hint>
     <hint type="destinationlabel">
-     <x>634</x>
-     <y>421</y>
+     <x>514</x>
+     <y>381</y>
     </hint>
    </hints>
   </connection>
