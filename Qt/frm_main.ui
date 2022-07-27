@@ -87,34 +87,11 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: green;
-text-align: center;</string>
+       <string notr="true">background-color: rgb(0,255,0)</string>
       </property>
       <property name="text">
        <string>Check</string>
       </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QTableWidget" name="tv_ergebnisse">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-      </property>
-      <column>
-       <property name="text">
-        <string>Satz</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Quelle</string>
-       </property>
-      </column>
      </widget>
     </item>
     <item row="1" column="0">
@@ -125,7 +102,19 @@ text-align: center;</string>
        </font>
       </property>
       <property name="plainText">
-       <string>Ein Prozessor ist ein (meist sehr stark verkleinertes und meist frei) programmierbares Rechenwerk, also eine Maschine oder eine elektronische Schaltung, die gemäß übergebenen Befehlen andere Maschinen oder elektrische Schaltungen steuert und dabei einen Algorithmus (Prozess) vorantreibt, was meist Datenverarbeitung beinhaltet. Der weitere Artikel beschreibt ausschließlich diese Bedeutung, am Beispiel des Prozessors eines Computers. Am bekanntesten sind Prozessoren als Hauptprozessor, Zentrale Recheneinheit, Zentraleinheit oder Zentrale Verarbeitungseinheit (kurz ZVE, englisch central processing unit, kurz CPU) für Computer oder computerähnliche Geräte, in denen sie Befehle ausführen. Am weitesten verbreitet sind Prozessoren heutzutage als integrierte Schaltungen in Form von Mikroprozessoren und Mikrocontroller in eingebetteten Systemen (etwa in Waschmaschinen, Ticketautomaten, DVD-Spielern, Smartphones usw.). </string>
+       <string>Hier Text eingeben...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QTableView" name="tv_ergebnisse">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
      </widget>
     </item>

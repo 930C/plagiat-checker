@@ -1,3 +1,7 @@
 .google-cookie
 env/
 __pycache__/
+build/
+dist/
+qt_qui.spec
+qt_gui.spec

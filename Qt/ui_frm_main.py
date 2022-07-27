@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'frm_mainmzBbOp.ui'
+## Form generated from reading UI file 'frm_mainUSQwmi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.5
 ##
@@ -17,7 +17,7 @@ class Ui_frm_main(object):
     def setupUi(self, frm_main):
         if not frm_main.objectName():
             frm_main.setObjectName(u"frm_main")
-        frm_main.resize(965, 683)
+        frm_main.resize(1200, 800)
         font = QFont()
         font.setPointSize(11)
         frm_main.setFont(font)
@@ -51,8 +51,7 @@ class Ui_frm_main(object):
         self.lb_plagiatChecker.setObjectName(u"lb_plagiatChecker")
         self.lb_plagiatChecker.setEnabled(True)
         font2 = QFont()
-        font2.setFamily(u"Noto Sans Display Bold")
-        font2.setPointSize(24)
+        font2.setPointSize(28)
         self.lb_plagiatChecker.setFont(font2)
         self.lb_plagiatChecker.setAlignment(Qt.AlignCenter)
 
@@ -60,13 +59,23 @@ class Ui_frm_main(object):
 
         self.bt_check = QPushButton(self.centralwidget)
         self.bt_check.setObjectName(u"bt_check")
-        self.bt_check.setFont(font2)
+        font3 = QFont()
+        font3.setFamily(u"Noto Sans Display Bold")
+        font3.setPointSize(24)
+        self.bt_check.setFont(font3)
         self.bt_check.setCursor(QCursor(Qt.PointingHandCursor))
         self.bt_check.setAutoFillBackground(False)
-        self.bt_check.setStyleSheet(u"background-color: green;\n"
-"text-align: center;")
+        self.bt_check.setStyleSheet(u"background-color: rgb(0,255,0)")
 
         self.gridLayout.addWidget(self.bt_check, 4, 0, 1, 1, Qt.AlignHCenter)
+
+        self.te_input = QPlainTextEdit(self.centralwidget)
+        self.te_input.setObjectName(u"te_input")
+        font4 = QFont()
+        font4.setPointSize(12)
+        self.te_input.setFont(font4)
+
+        self.gridLayout.addWidget(self.te_input, 1, 0, 1, 1)
 
         self.tv_ergebnisse = QTableWidget(self.centralwidget)
         if (self.tv_ergebnisse.columnCount() < 2):
@@ -76,20 +85,10 @@ class Ui_frm_main(object):
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tv_ergebnisse.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         self.tv_ergebnisse.setObjectName(u"tv_ergebnisse")
-        font3 = QFont()
-        font3.setPointSize(14)
-        self.tv_ergebnisse.setFont(font3)
-        self.tv_ergebnisse.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.tv_ergebnisse.setFont(font)
+        self.tv_ergebnisse.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
         self.gridLayout.addWidget(self.tv_ergebnisse, 7, 0, 1, 1)
-
-        self.te_input = QPlainTextEdit(self.centralwidget)
-        self.te_input.setObjectName(u"te_input")
-        font4 = QFont()
-        font4.setPointSize(12)
-        self.te_input.setFont(font4)
-
-        self.gridLayout.addWidget(self.te_input, 1, 0, 1, 1)
 
         frm_main.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(frm_main)
@@ -120,11 +119,11 @@ class Ui_frm_main(object):
         self.lb_ergebnisse.setText(QCoreApplication.translate("frm_main", u"Ergebnisse", None))
         self.lb_plagiatChecker.setText(QCoreApplication.translate("frm_main", u"Plagiat Checker", None))
         self.bt_check.setText(QCoreApplication.translate("frm_main", u"Check", None))
+        self.te_input.setPlainText(QCoreApplication.translate("frm_main", u"Hier Text eingeben...", None))
         ___qtablewidgetitem = self.tv_ergebnisse.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("frm_main", u"Satz", None));
         ___qtablewidgetitem1 = self.tv_ergebnisse.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("frm_main", u"Quelle", None));
-        self.te_input.setPlainText(QCoreApplication.translate("frm_main", u"Ein Prozessor ist ein (meist sehr stark verkleinertes und meist frei) programmierbares Rechenwerk, also eine Maschine oder eine elektronische Schaltung, die gem\u00e4\u00df \u00fcbergebenen Befehlen andere Maschinen oder elektrische Schaltungen steuert und dabei einen Algorithmus (Prozess) vorantreibt, was meist Datenverarbeitung beinhaltet. Der weitere Artikel beschreibt ausschlie\u00dflich diese Bedeutung, am Beispiel des Prozessors eines Computers. Am bekanntesten sind Prozessoren als Hauptprozessor, Zentrale Recheneinheit, Zentraleinheit oder Zentrale Verarbeitungseinheit (kurz ZVE, englisch central processing unit, kurz CPU) f\u00fcr Computer oder computer\u00e4hnliche Ger\u00e4te, in denen sie Befehle ausf\u00fchren. Am weitesten verbreitet sind Prozessoren heutzutage als integrierte Schaltungen in Form von Mikroprozessoren und Mikrocontroller in eingebetteten Systemen (etwa in Waschmaschinen, Ticketautomaten, DVD-Spielern, Smartphones usw.). ", None))
         self.menuDatei.setTitle(QCoreApplication.translate("frm_main", u"Datei", None))
     # retranslateUi
 
