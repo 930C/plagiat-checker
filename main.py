@@ -11,29 +11,33 @@ import wikipedia
 
 def main(eingabe, ui=None):
     plagiate = []
-    content = ss.splitter(eingabe)
+    content = ss.splitter(eingabe)              # split the input into sentences
 
-    for index, value in enumerate(content):
+    for index, value in enumerate(content):     # go through each sentence
         try:
-            # raise BaseException()
-            for j in search('"' + value + '"', tld="de", num=1, stop=5, pause=5):
-                pageContent = rw.readWebsite(j)
-                checkResult = cp.checkPlagiat(value, pageContent, j)
-
-                if checkResult != None:
-                    plagiate.append(checkResult)
-                    break
-
-        except BaseException as err:
-            try:
-                wikipedia.set_lang("de")
-                wikis = wikipedia.search(value[0:300])
-                for j in wikis[0:5]:
-                    pageContent = rw.readWebsite(wikipedia.page(j).url)
-                    checkResult = cp.checkPlagiat(value, pageContent, j)
+            for j in search(value, tld="de", num=1, stop=5, pause=5):       # make a google search with the given sentence, in google.de, show 1 result, stop after 5 results and take a break every 5 seconds
+                try:
+                    pageContent = rw.readWebsite(j)                         # read the websites html and return the cleaned up content of the page
+                    checkResult = cp.checkPlagiat(value, pageContent, j)    # check for plagiarism
 
                     if checkResult != None:
-                        checkResult[1] += "(Quelle: Wikipedia)"
+                        plagiate.append(checkResult)                        # Add the incident to the list of plagiarisms
+                        break
+                except BaseException as err:
+                    print("Error while trying to reach " + j + " : " +  str(err))   # Website was unable to reach (HTTP 304 Error e.g.)
+
+        except BaseException as err:    # If google search is not working and shows message "too many requests", then try wikipedia alternatively
+            try:
+                wikipedia.set_lang("de")
+                wikis = wikipedia.search(value[0:299])  # make a wikipedia search (max of 300 letters allowed) and retrieve a list of wikipedia page titles
+                for j in wikis:                         # go through each title (max 10 according to definition of wikipedia.search())
+                    page = wikipedia.page(j, auto_suggest=False)    # Open the wikipedia page  - IMPORTANT: auto_suggest is set to False because a exact match between page title and term j is needed
+                    url = page.url                                  # Gives the url of that wiki page
+                    pageContent = rw.readWebsite(url)               # Read from the wiki page
+                    checkResult = cp.checkPlagiat(value, pageContent, j)    # Check if the sentence has been copied
+
+                    if checkResult != None:
+                        checkResult[1] += " (Quelle: Wikipedia)"
                         plagiate.append(checkResult)
                         break
 
@@ -42,9 +46,5 @@ def main(eingabe, ui=None):
                 continue
         finally:
             if (ui != None):
-                ui.progress(int((index+1)*100/len(content)))
+                ui.progress(int((index+1)*100/len(content)))    # For each sentence finished, increment the loading bar by a fraction
     return plagiate
-
-if __name__ == "__main__":
-    myString = "In a similar fashion, Arch ships the configuration files provided by upstream with changes limited to distribution-specific issues like adjusting the system file paths. It does not add automation features such as enabling a service simply because the package was installed. Packages are only split when compelling advantages exist, such as to save disk space in particularly bad cases of waste. GUI configuration utilities are not officially provided, encouraging users to perform most system configuration from the shell and a text editor."
-    print(main(myString))

@@ -1,5 +1,7 @@
 import urllib.request as urllib
-import re
+# import re
+from bs4 import BeautifulSoup
+import sentenceCleaner as sc
 
 def readWebsite(url):
     # site = urllib.urlopen(url)     
@@ -10,10 +12,13 @@ def readWebsite(url):
     # clean_html = re.sub("\s+", " ", clean_html)
     # return clean_html
 
-    site = urllib.urlopen(url).read().decode("utf8")
+    site = urllib.urlopen(url)
+    siteDecoded = site.read().decode("utf8")
     site.close()
 
-    page = BeautifulSoup(site, "html.parser")
+    page = BeautifulSoup(siteDecoded, "html.parser")
     pageContent = page.text
-    
-    return pageContent
+        
+    cleanPageContent = sc.cleaner(pageContent)
+
+    return cleanPageContent
