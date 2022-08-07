@@ -1,3 +1,4 @@
+# Not in use
 def readFile(file):
     try:
         f1 = open(file, "r",encoding='utf8')

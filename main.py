@@ -20,9 +20,9 @@ def main(eingabe, ui=None, language="German"):
 
     for index, value in enumerate(content):     # go through each sentence
         try:
-            for j in search(value, tld=tld, num=1, stop=5, pause=2.5):       # make a google search with the given sentence, in google.tld, show 1 result, stop after 5 results and take a break every 2 seconds
+            for j in search(value, tld=tld, num=1, stop=5, pause=3):       # make a google search with the given sentence, in google.tld, show 1 result, stop after 5 results and take a break every 2 seconds
                 try:
-                    print("Sentence " + index+1 + ", checking URL: " + j)
+                    print("Sentence " + str(index+1) + ", checking URL: " + str(j))
                     if j.endswith(".pdf"):
                         print("Cannot read PDF: " + j)
                         continue
@@ -33,7 +33,7 @@ def main(eingabe, ui=None, language="German"):
                         plagiate.append(checkResult)                        # Add the incident to the list of plagiarisms
                         break
                 except BaseException as err:
-                    print("Error while trying to reach " + j + " : " +  str(err))   # Website was unable to reach (HTTP 304 Error e.g.)
+                    print("Error while trying to reach " + str(j) + " : " +  str(err))   # Website was unable to reach (HTTP 304 Error e.g.)
 
         except BaseException as err:    # If google search is not working and shows message "too many requests", then try wikipedia alternatively
             print(str(err) + " , trying wikipedia search")
@@ -43,7 +43,7 @@ def main(eingabe, ui=None, language="German"):
                 for j in wikis:                         # go through each title (max 10 according to definition of wikipedia.search())
                     page = wikipedia.page(j, auto_suggest=False)    # Open the wikipedia page  - IMPORTANT: auto_suggest is set to False because a exact match between page title and term j is needed
                     url = page.url                                  # Gives the url of that wiki page
-                    print("Sentence " + index+1 + ", checking URL: " + url)
+                    print("Sentence " + str(index+1) + ", checking URL: " + url)
                     pageContent = rw.readWebsite(url)               # Read from the wiki page
                     checkResult = cp.checkPlagiat(value, pageContent, j)    # Check if the sentence has been copied
 

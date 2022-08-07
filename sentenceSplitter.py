@@ -8,6 +8,6 @@ def splitter(text):
 
     for index, value in enumerate(ausgabe):
         if value.replace(" ", "") == "": ausgabe.pop(index)         # delete empty elements
-        elif value[0] == " ": ausgabe[index] = value.lstrip(" ")    # delete leading whitespace
+        elif value[0] == " ": ausgabe[index] = value.lstrip(" ")    # delete first whitespace
 
     return ausgabe

@@ -13,14 +13,13 @@ class Frm_main(QMainWindow, Ui_frm_main):
         self.progressBar.setValue(0)
         
     def check(self):
-        #content = ss.splitter(self.te_input.toPlainText())
         plagiate = m.main(self.te_input.toPlainText(), self)
 
         self.tv_ergebnisse.setRowCount(len(plagiate))
         self.tv_ergebnisse.setColumnCount(2)
         self.tv_ergebnisse.setHorizontalHeaderLabels(["Satz", "Quelle"])
         self.tv_ergebnisse.setColumnWidth(0, 700)
-        self.tv_ergebnisse.setColumnWidth(1, 250)
+        self.tv_ergebnisse.setColumnWidth(1, 350)
 
         for index, value in enumerate(plagiate):
             self.itemSatz = QTableWidgetItem(plagiate[index][0])
