@@ -2,10 +2,12 @@
 
 von Nora, Marcel und Luca
 
+*Unsere Präsentation-Slides sowie One-Pager befinden sich im Ordner [Dokumente](https://github.com/930C/plagiat-checker/tree/main/Dokumente).*
+
 ## Benötigte Packages
 
 ```bash
-pip install google wikipedia pyside6
+pip install google wikipedia pyside6 beautifulsoup4
 ```
 
 ## Öffnen
